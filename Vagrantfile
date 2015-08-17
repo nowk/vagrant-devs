@@ -27,6 +27,8 @@ $shared_folders = {}
 end
 
 Vagrant.configure(2) do |config|
+  config.vm.boot_timeout = 30
+
   # base configuration
   #
   config.vm.define $vm_name do |c|
