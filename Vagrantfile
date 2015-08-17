@@ -53,7 +53,7 @@ Vagrant.configure(2) do |config|
     3000, 
     4000
   ].each do |port|
-    config.vm.network "forwarded_port", guest: pott, host: port
+    config.vm.network "forwarded_port", guest: port, host: port
   end
 
   # Create a private network, which allows host-only access to the machine
