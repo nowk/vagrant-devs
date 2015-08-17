@@ -152,5 +152,5 @@ cd ~/opt \
 	&& wget https://github.com/coreos/rkt/releases/download/v0.8.0-rc1/rkt-v0.8.0-rc1.tar.gz > /dev/null 2>&1
 tar xzvf rkt-v0.8.0-rc1.tar.gz
 cd rkt-v0.8.0-rc1
-echo '$password' | sudo -S ln -s ./rkt /usr/local/bin/rkt
+echo '$password' | sudo -S ln -s $(pwd)/rkt /usr/local/bin/rkt
 eof
