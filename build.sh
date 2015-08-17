@@ -112,7 +112,7 @@ cd ~/.vim/bundle/YouCompleteMe \
 	&&./install.sh --clang-completer --gocode-completer
 
 # docker
-curl -sSL https://get.docker.com/ | sh
+# curl -sSL https://get.docker.com/ | sh
 
 # rocket
 cd ~/opt \
