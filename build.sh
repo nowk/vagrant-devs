@@ -62,6 +62,8 @@ set -e
 sudo apt-get -y install curl git-core tmux zsh
 
 exec echo $password | sudo -S -i -u $user /bin/sh - << eof
+cd
+
 # oh my zsh
 # this throws an error, absorb with set +e
 set +e
