@@ -19,6 +19,9 @@ $vm_cpus = 1        # TODO configurable cpus
 $shared_folders = {}
 (ENV["VAGRANT_MOUNTS"] || ".:/vagrant").split(",").each do |mount|
   host, guest = mount.split(":")
+  if guest.nil? || guest == ""
+    guest = host
+  end
 
   $shared_folders[host] = guest
 end
