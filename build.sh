@@ -156,3 +156,5 @@ tar xzvf rkt-v0.8.0-rc1.tar.gz
 cd rkt-v0.8.0-rc1
 echo '$password' | sudo -S ln -s $(pwd)/rkt /usr/local/bin/rkt
 eof
+
+sudo apt-get -y install sshfs
