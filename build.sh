@@ -20,11 +20,45 @@ fi
 
 sudo apt-get update
 
-# need ppa for latest git (trusty needs this)
-sudo apt-get -y install software-properties-common
-sudo add-apt-repository ppa:git-core/ppa
+# manual install of guest additions, debian needs this due to missing headers
+sudo apt-get -y install linux-headers-`uname -r`
 
-sudo apt-get update
+if [ ! -e ~/opt ] ; then
+	mkdir ~/opt
+fi
+cd ~/opt
+
+if [ ! -e ~/opt/VBoxGuestAdditions_5.0.2.iso ] ; then
+	wget http://download.virtualbox.org/virtualbox/5.0.2/VBoxGuestAdditions_5.0.2.iso > /dev/null 2>&1
+fi
+
+if [ ! -e /mnt/miso ] ; then
+	sudo mkdir /mnt/miso
+fi
+if grep -qs '/mnt/miso' /proc/mounts ; then
+	echo "already mounted"
+else
+	sudo mount ./VBoxGuestAdditions_5.0.2.iso /mnt/miso
+fi
+
+# VBoxLinuxAdditions.run throws a message into stderr, absorb that with set +e
+set +e
+cd /mnt/miso \
+	&& sudo ./VBoxLinuxAdditions.run
+sudo umount /mnt/miso
+
+cd ~/opt \
+	&& rm VBoxGuestAdditions_5.0.2.iso
+cd .. \
+	&& rmdir opt
+
+set -e
+
+# need ppa for latest git (trusty needs this)
+# sudo apt-get -y install software-properties-common
+# sudo add-apt-repository ppa:git-core/ppa
+# sudo apt-get update
+
 sudo apt-get -y install curl git-core tmux zsh
 
 exec echo $password | sudo -S -i -u $user /bin/sh - << eof

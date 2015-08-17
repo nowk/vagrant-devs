@@ -7,8 +7,8 @@ Vagrant.require_version ">= 1.6.0"
 
 # TODO get user runnning vagrant up
 # $host_home = File.expand_path "~"
-$box = "ubuntu/trusty64"
-$vm_name = "trusty"
+$box = "debian/jessie64"
+$vm_name = "jessie"
 $vm_gui = false
 $vm_memory = 1024*2 # TODO configurable memory
 $vm_cpus = 1        # TODO configurable cpus
