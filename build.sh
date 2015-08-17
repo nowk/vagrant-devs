@@ -112,9 +112,12 @@ cd ~/.vim/bundle/YouCompleteMe \
 	&&./install.sh --clang-completer --gocode-completer
 
 # docker
-set +e
 curl -sSL https://get.docker.com/ | sh
 
-set -e
-# TODO install latest rocket
+# rocket
+cd ~/opt \
+	&& wget https://github.com/coreos/rkt/releases/download/v0.8.0-rc1/rkt-v0.8.0-rc1.tar.gz \
+	&& tar xzvf rkt-v0.8.0-rc1.tar.gz
+cd rkt-v0.8.0-rc1 \
+	&& echo '$password' | sudo -S ln -s $PWD/rkt /usr/local/bin/rkt
 eof
