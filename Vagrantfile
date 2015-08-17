@@ -35,7 +35,7 @@ Vagrant.configure(2) do |config|
       vb.cpus = $vm_cpus
     end
 
-    c.vm.hostname = vm_name
+    c.vm.hostname = $vm_name
 
     $shared_folders.each do |host, local|
       # TODO pass in owner
