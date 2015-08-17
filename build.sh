@@ -99,7 +99,6 @@ exec echo $password | sudo -S -i -u $user /bin/sh - << eof
 set -e
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-# git clone https://github.com/nowk/genericdc.git ~/.vim/bundle/genericdc
 
 # supress output, it loads a vim
 # send <enter>
@@ -150,8 +149,8 @@ cd ~/.vim/bundle/YouCompleteMe \
 
 # rocket
 cd ~/opt \
-	&& wget https://github.com/coreos/rkt/releases/download/v0.8.0-rc1/rkt-v0.8.0-rc1.tar.gz \
-	&& tar xzvf rkt-v0.8.0-rc1.tar.gz
-cd rkt-v0.8.0-rc1 \
-	&& echo '$password' | sudo -S ln -s $PWD/rkt /usr/local/bin/rkt
+	&& wget https://github.com/coreos/rkt/releases/download/v0.8.0-rc1/rkt-v0.8.0-rc1.tar.gz > /dev/null 2>&1
+tar xzvf rkt-v0.8.0-rc1.tar.gz
+cd rkt-v0.8.0-rc1
+echo '$password' | sudo -S ln -s ./rkt /usr/local/bin/rkt
 eof
