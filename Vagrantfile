@@ -29,7 +29,7 @@ end
 file_to_disk =  'drive-01.vdi'
 
 Vagrant.configure(2) do |config|
-  config.vm.boot_timeout = 30
+  config.vm.boot_timeout = 60
 
   # base configuration
   #
