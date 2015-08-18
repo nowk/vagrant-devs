@@ -1,0 +1,9 @@
+# add secondary partitions
+# echo `blkid /dev/sdc1 | awk '{print$2}' | sed -e 's/"//g'` /home/nowk/var   ext4   noatime,nobarrier   0   0 >> /etc/fstab"'
+# -> UUID=acd925b6-695e-408f-8138-c1a781671cb5 /home/nowk/var ext4 noatime,nobarrier 0 0
+
+# bind mounts
+# /home/nowk/var/lib/docker     /var/lib/docker     none bind 0 0
+# /home/nowk/var/lib/postgresql /var/lib/postgresql none bind 0 0
+# /home/nowk/var/data           /data               none bind 0 0
+

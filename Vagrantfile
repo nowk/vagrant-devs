@@ -26,6 +26,8 @@ $shared_folders = {}
   $shared_folders[host] = guest
 end
 
+file_to_disk =  'drive-01.vdi'
+
 Vagrant.configure(2) do |config|
   config.vm.boot_timeout = 30
 
@@ -38,6 +40,12 @@ Vagrant.configure(2) do |config|
       vb.gui = $vm_gui
       vb.memory = $vm_memory
       vb.cpus = $vm_cpus
+
+      # add second store for data
+      unless File.exist?(file_to_disk)
+        vb.customize ['createhd', '--filename', file_to_disk, '--size', 16 * 1024]
+      	vb.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', 2, '--device', 0, '--type', 'hdd', '--medium', file_to_disk]
+      end
     end
 
     c.vm.hostname = $vm_name
