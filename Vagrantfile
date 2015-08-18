@@ -54,6 +54,10 @@ Vagrant.configure(2) do |config|
 
     c.vm.hostname = $vm_name
 
+    # remove default shared folder
+    c.vm.synced_folder '.', '/vagrant', disabled: true
+
+    # shared folders
     $shared_folders.each do |host, local|
       # TODO pass in owner
       c.vm.synced_folder host, local, owner: "nowk"
