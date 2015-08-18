@@ -10,7 +10,7 @@ Vagrant.require_version ">= 1.6.0"
 $box = "debian/jessie64"
 $vm_name = "jessie"
 $vm_gui = false
-$vm_memory = 1024*2 # TODO configurable memory
+$vm_memory = 1024*4 # TODO configurable memory
 $vm_cpus = 1        # TODO configurable cpus
 
 # shared folders follow a `host:guest` format with multiples being comma 
