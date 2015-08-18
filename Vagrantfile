@@ -41,6 +41,10 @@ Vagrant.configure(2) do |config|
       vb.memory = $vm_memory
       vb.cpus = $vm_cpus
 
+      # disable nested paging, causing 100% cpu
+      # http://www.dotnetmafia.com/blogs/dotnettipoftheday/archive/2010/09/22/fix-high-guest-cpu-utilization-in-virtualbox-by-disabling-nested-paging.aspx
+      vb.customize "pre-boot", ['modifyvm', :id, '--nestedpaging', 'off']
+
       # add second store for data
       unless File.exist?(file_to_disk)
         vb.customize ['createhd', '--filename', file_to_disk, '--size', 16 * 1024]
