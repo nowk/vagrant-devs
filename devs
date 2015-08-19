@@ -1,0 +1,40 @@
+#!/bin/sh
+set -e
+
+exports=
+cmd=
+mounts='VAGRANT_MOUNTS=/home/nowk/.ssh:,/home/nowk/devs'
+
+if [ "$1" = "vagrant" ] ; then
+	shift # first arg is vagrant
+fi
+
+case "$1" in
+	up|reload)
+		exports=$mounts
+		cmd="$1"
+	;;
+	halt)
+		cmd="$1"
+	;;
+	*)
+		cat <<usage
+NAME:
+	./devs - the executable
+
+USAGE:
+
+	./devs [vagrant] <command>
+
+COMMAND:
+	 up       vagrant up
+	 reload   vagrant reload
+	 halt     vagrant halt
+usage
+		echo
+		exit 0
+	;;
+esac
+
+# run [exports] vagrant <command>
+sh -c "$exports vagrant $cmd"
