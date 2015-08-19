@@ -4,6 +4,7 @@
 
 # bind mounts
 # /home/nowk/var/lib/docker     /var/lib/docker     none bind 0 0
+# /home/nowk/var/lib/rkt        /var/lib/rkt     none bind 0 0
 # /home/nowk/var/lib/postgresql /var/lib/postgresql none bind 0 0
 # /home/nowk/var/data           /data               none bind 0 0
 
