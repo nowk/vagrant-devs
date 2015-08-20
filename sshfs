@@ -1,0 +1,17 @@
+# http://www.admin-magazine.com/HPC/Articles/Sharing-Data-with-SSHFS
+# sshfs -p 22 -o allow_other -o cache=yes -o kernel_cache -o compression=no -o large_read -o Ciphers=arcfour nowk@10.0.2.2:/home/nowk/devs /home/nowk/devs
+
+# various combos to find the best speed
+# TODO run actual benchmarks
+#
+# This seems to have a slight lag from a server, eg. rails
+# sshfs -p 22 -o allow_other -o cache=yes -o Ciphers=arcfour -o reconnect,auto_cache,kernel_cache,large_read -o compression=yes nowk@10.0.2.2:/home/nowk/devs /home/nowk/devs
+#
+# This seems to have a better server response, eg. rails
+# sshfs -p 22 -o allow_other -o cache=yes -o Ciphers=arcfour -o reconnect,auto_cache,kernel_cache,large_read -o compression=no nowk@10.0.2.2:/home/nowk/devs /home/nowk/devs
+
+# sshfs -p 22 -o allow_other -o cache=yes -o Ciphers=arcfour -o kernel_cache nowk@10.0.2.2:/home/nowk/devs /home/nowk/devs
+
+# sshfs -p 22 -o allow_other -o cache=yes -o Ciphers=arcfour -o reconnect,auto_cache,kernel_cache nowk@10.0.2.2:/home/nowk/devs /home/nowk/devs
+
+# sshfs -p 22 -o allow_other -o cache=yes -o Ciphers=arcfour -o reconnect,kernel_cache -o compression=no nowk@10.0.2.2:/home/nowk/devs /home/nowk/devsO
