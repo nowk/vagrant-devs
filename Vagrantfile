@@ -85,9 +85,9 @@ Vagrant.configure(2) do |config|
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
   [
-    1337, 
-    7331, 
-    3000, 
+    1337,
+    7331,
+    3000,
     4000
   ].each do |port|
     config.vm.network "forwarded_port", guest: port, host: port
