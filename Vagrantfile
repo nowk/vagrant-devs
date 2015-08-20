@@ -1,12 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-require 'fileutils'
-
 Vagrant.require_version ">= 1.6.0"
 
 # TODO get user runnning vagrant up
-# $host_home = File.expand_path "~"
 $box = "debian/jessie64"
 $vm_name = "jessie"
 $vm_gui = false
