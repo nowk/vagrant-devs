@@ -10,17 +10,21 @@ $vm_gui = false
 $vm_memory = 1024*4 # TODO configurable memory
 $vm_cpus = 1        # TODO configurable cpus
 
-# shared folders follow a `host:guest` format with multiples being comma 
-# separated
-#
-$shared_folders = {}
-(ENV["VAGRANT_MOUNTS"] || "").split(",").each do |mount|
-  host, guest = mount.split(":")
-  if guest.nil? || guest == ""
-    guest = host
-  end
+# to_mount takes a string and returns an object describing each shared mount
+# the string takes the standard format of host:guest,...
+def to_mount(str)
+  str ||= ""
 
-  $shared_folders[host] = guest
+  str.split(",").inject({}) do |memo, obj|
+    host, guest = obj.split(":")
+
+    if guest.nil? || guest == ""
+      guest = host
+    end
+
+    memo[host] = guest
+    memo
+  end
 end
 
 # secondary drive
@@ -54,14 +58,26 @@ Vagrant.configure(2) do |config|
 
     c.vm.hostname = $vm_name
 
+    # shared folders
+    #
+    # sshfs
+    # TODO current vagrant-sshfs plugin does not seem to work
+    # c.sshfs.mount_on_guest = true
+    # c.sshfs.sudo = true
+    # c.sshfs.options = "-o cache=yes -o Ciphers=arcfour -o reconnect,kernel_cache,large_read -o compression=no"
+    # c.sshfs.username = 'nowk'
+    # c.sshfs.host_addr = '10.0.2.2'
+    # c.sshfs.paths = {
+    #   "/home/nowk/devs" => "/home/nowk/devs"
+    # }
+
+    # standard guest access
+    to_mount(ENV["VAGRANT_MOUNTS"]).each do |host, local|
+      c.vm.synced_folder host, local, owner: "nowk" # TODO pass in owner
+    end
+
     # remove default shared folder
     c.vm.synced_folder '.', '/vagrant', disabled: true
-
-    # shared folders
-    $shared_folders.each do |host, local|
-      # TODO pass in owner
-      c.vm.synced_folder host, local, owner: "nowk"
-    end
   end
 
   # Create a forwarded port mapping which allows access to a specific port
