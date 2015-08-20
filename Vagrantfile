@@ -23,7 +23,10 @@ $shared_folders = {}
   $shared_folders[host] = guest
 end
 
-file_to_disk =  'drive-01.vdi'
+# secondary drive
+# may need to first set controller
+# VBoxManage storagectl devs_jessie_1439795608953_64597 --name "SATA Controller" --add sata --controller IntelAHCI
+secondary_drive =  'drive-01.vdi'
 
 Vagrant.configure(2) do |config|
   config.vm.boot_timeout = 60
@@ -43,9 +46,9 @@ Vagrant.configure(2) do |config|
       vb.customize "pre-boot", ['modifyvm', :id, '--nestedpaging', 'off']
 
       # add second store for data
-      unless File.exist?(file_to_disk)
-        vb.customize ['createhd', '--filename', file_to_disk, '--size', 16 * 1024]
-      	vb.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', 2, '--device', 0, '--type', 'hdd', '--medium', file_to_disk]
+      unless File.exist?(secondary_drive)
+        vb.customize ['createhd', '--filename', secondary_drive, '--size', 16 * 1024]
+      	vb.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', 2, '--device', 0, '--type', 'hdd', '--medium', secondary_drive]
       end
     end
 
