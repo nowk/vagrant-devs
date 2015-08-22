@@ -28,9 +28,7 @@ def to_mount(str)
 end
 
 # secondary drive
-# may need to first set controller
-# VBoxManage storagectl devs_jessie_1439795608953_64597 --name "SATA Controller" --add sata --controller IntelAHCI
-secondary_drive =  'drive-01.vdi'
+# secondary_drive =  'drive-01.vdi'
 
 Vagrant.configure(2) do |config|
   config.vm.boot_timeout = 60
@@ -49,11 +47,40 @@ Vagrant.configure(2) do |config|
       # http://www.dotnetmafia.com/blogs/dotnettipoftheday/archive/2010/09/22/fix-high-guest-cpu-utilization-in-virtualbox-by-disabling-nested-paging.aspx
       vb.customize "pre-boot", ['modifyvm', :id, '--nestedpaging', 'off']
 
-      # add second store for data
-      unless File.exist?(secondary_drive)
-        vb.customize ['createhd', '--filename', secondary_drive, '--size', 16 * 1024]
-      	vb.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', 2, '--device', 0, '--type', 'hdd', '--medium', secondary_drive]
-      end
+      # Attaching additional storage
+      # NOTE these are better off handled via VBoxManage commands
+      #
+      # Create drive:
+      #
+      #   $ VBoxManage createhd --filename <drive-name>.vdi --size 16384
+      #
+      # Attach drive:
+      #
+      #   $ VBoxManage storageattach <vi id> \
+      #     --storagectl "SATA Controller" --port 1 --device 0 --type hdd
+      #     --medium <drive-name>.vdi
+      #
+      # If you don't have controller setup:
+      #
+      #   $ VBoxManage storagectl <vm id> \
+      #     --name "SATA Controller" --add sata --controller IntelAHCI
+      #
+      # If you need to change the UUID due to a detachment or other
+      #
+      #   $ VBoxManage internalcommands sethduuid <drive name>.vdi
+      #
+      # Handly commands when dealing with storage
+      #
+      #   $ VBoxManage list vms
+      #   $ VBoxManage list hdds
+      #   $ VBoxManage closemedium disk <uuid> --delete
+      #
+      # Within vagrant
+      #
+      #   unless File.exist?(secondary_drive)
+      #     vb.customize ['createhd', '--filename', secondary_drive, '--size', 16 * 1024]
+      #     vb.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', 2, '--device', 0, '--type', 'hdd', '--medium', secondary_drive]
+      #   end
     end
 
     c.vm.hostname = $vm_name
