@@ -3,7 +3,8 @@ set -e
 
 exports=
 cmd=
-mounts='VAGRANT_MOUNTS=/home/nowk/.ssh:,/home/nowk/devs'
+# mounts='VAGRANT_MOUNTS=/home/nowk/.ssh:,/home/nowk/devs'
+mounts='VAGRANT_MOUNTS=/home/nowk/.ssh:'
 
 if [ "$1" = "vagrant" ] ; then
 	shift # first arg is vagrant
