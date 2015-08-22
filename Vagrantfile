@@ -88,7 +88,8 @@ Vagrant.configure(2) do |config|
     1337,
     7331,
     3000,
-    4000
+    4000,
+    8888 # btsync
   ].each do |port|
     config.vm.network "forwarded_port", guest: port, host: port
   end
