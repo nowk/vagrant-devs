@@ -152,7 +152,8 @@ cd ~/.vim/bundle/YouCompleteMe \
 # rocket
 cd ~/opt \
 	&& wget https://github.com/coreos/rkt/releases/download/v0.8.0/rkt-v0.8.0.tar.gz > /dev/null 2>&1
-tar xzvf rkt-v0.8.0.tar.gz
+tar xzvf rkt-v0.8.0.tar.gz \
+	&& rm rkt-v0.8.0.tar.gz
 cd rkt-v0.8.0
 echo '$password' | sudo -S ln -s $(pwd)/rkt /usr/local/bin/rkt
 eof
