@@ -54,6 +54,12 @@ cd .. \
 
 set -e
 
+
+# add nameserver 8.8.8.8
+#
+echo nameserver 8.8.8.8 | sudo tee -a /etc/resolv.conf
+
+
 # need ppa for latest git (trusty needs this)
 # sudo apt-get -y install software-properties-common
 # sudo add-apt-repository ppa:git-core/ppa
