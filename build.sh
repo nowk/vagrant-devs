@@ -151,7 +151,7 @@ cd src \
 
 # finish vim; our ycm requires go
 cd ~/.vim/bundle/YouCompleteMe \
-	&&./install.sh --clang-completer --gocode-completer
+	&& ./install.py --clang-completer --gocode-completer
 
 # docker
 # curl -sSL https://get.docker.com/ | sh
