@@ -120,7 +120,8 @@ sudo apt-get -y install \
 	software-properties-common \
 	python-dev \
 	python-pip \
-	libncurses-dev
+	libncurses-dev \
+	clang
 
 exec echo $password | sudo -S -i -u $user /bin/sh - << eof
 set -e
