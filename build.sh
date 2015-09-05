@@ -80,13 +80,11 @@ sh -c "echo '${password}' | chsh -s $(which zsh)"
 
 # dotfiles
 git clone https://github.com/nowk/prospect.git
-cd prospect/ \
-	&& git checkout pixel-2
 cd \
 	&& ln -s ~/prospect ~/.prospect \
-	&& ln -s ~/.prospect/git.config ~/.gitconfig \
-	&& ln -s ~/.prospect/git.ignore ~/.gitignore_global \
-	&& ln -s ~/.prospect/tmux ~/.tmux.conf \
+	&& ln -s ~/.prospect/gitconfig ~/.gitconfig \
+	&& ln -s ~/.prospect/gitignore_global ~/.gitignore_global \
+	&& ln -s ~/.prospect/tmux.conf ~/.tmux.conf \
 	&& ln -s ~/.prospect/vim ~/.vim \
 	&& ln -s ~/.prospect/vimrc ~/.vimrc \
 	&& mv ~/.zshrc ~/.zshrc.before-ln-s \
