@@ -163,4 +163,3 @@ cd rkt-v0.8.0
 echo '$password' | sudo -S ln -s $(pwd)/rkt /usr/local/bin/rkt
 eof
 
-sudo apt-get -y install sshfs lvm2
