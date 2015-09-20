@@ -146,20 +146,5 @@ cd src \
 
 # load the export file to get the gopaths
 . ~$user/prospect/exports/golang
-
-# finish vim; our ycm requires go
-cd ~/.vim/bundle/YouCompleteMe \
-	&& ./install.py --clang-completer --gocode-completer
-
-# docker
-# curl -sSL https://get.docker.com/ | sh
-
-# rocket
-cd ~/opt \
-	&& wget https://github.com/coreos/rkt/releases/download/v0.8.0/rkt-v0.8.0.tar.gz > /dev/null 2>&1
-tar xzvf rkt-v0.8.0.tar.gz \
-	&& rm rkt-v0.8.0.tar.gz
-cd rkt-v0.8.0
-echo '$password' | sudo -S ln -s $(pwd)/rkt /usr/local/bin/rkt
 eof
 
