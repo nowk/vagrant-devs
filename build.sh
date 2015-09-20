@@ -136,6 +136,7 @@ echo '$password' | sudo -S make install prefix=/usr/local
 cd .. \
 	&& rm -rf tig
 
+# TODO remove golang, will be moving entirely to docker
 # golang
 cd ~/opt \
 	&& git clone https://github.com/golang/go.git
