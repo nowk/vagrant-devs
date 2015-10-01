@@ -141,7 +141,7 @@ cd .. \
 cd ~/opt \
 	&& git clone https://github.com/golang/go.git
 cd go \
-	&& git checkout go1.4.2
+	&& git checkout go1.4.3
 cd src \
 	&& ./all.bash
 
